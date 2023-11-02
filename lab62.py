@@ -59,7 +59,7 @@ def lab_action(farms):
             continue
 
     print()
-    print("Ask a user to choose a farm (NE Farm, W Farm, or SE Farm)... but only return ANIMALS from that particular farm.")
+    print("Ask a user to choose a farm... but only return ANIMALS from that particular farm.")
     print()
 
     input_farm = input(f"Choose a farm {[farm['name'] for farm in farms]}: ").lower()
