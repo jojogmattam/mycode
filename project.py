@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import random
 
 question_bank = {
@@ -48,7 +49,7 @@ def game(num):
     while counter < num:
         question = random.choice(question_list)
         question_list.remove(question)
-        answer = input(question)
+        answer = input(f"{question}\n")
         if answer.lower() == question_bank[question].lower():
             print("Correct!")
             score += 1
