@@ -5,7 +5,7 @@
 import requests
 import pprint
 
-AOIF_CHAR = "https://www.anapioficeandfire.com/api/characters/"
+url = "https://www.anapioficeandfire.com/api/characters/"
 
 # check on the names of data passed
 def name_finder(got_list):
@@ -21,14 +21,21 @@ def name_finder(got_list):
 def main():
         got_charToLookup = input("Pick a number between 1 and 1000 to return info on a GoT character! " )
 
-        gotresp = requests.get(AOIF_CHAR + got_charToLookup)
+        gotresp = requests.get(url + got_charToLookup)
 
         got_dj = gotresp.json()
         pprint.pprint(got_dj)
 
         print(f"\nThe names of the books the character appears in\n")
-        for x in name_finder(got_dj.get("books")):
-            print(x)
+        for x in got_dj.get("books"):
+            r = requests.get(x)
+            decodedjson = r.json()
+            print(decodedjson.get("name"))
+        for x in got_dj.get("povBooks"):
+            r = requests.get(x)
+            decodedjson = r.json()
+            print(decodedjson.get("name"))
+             
 
         print(f"\nThe names of the allegiances the character has (if any)\n")
         for x in name_finder(got_dj.get("allegiances")):
